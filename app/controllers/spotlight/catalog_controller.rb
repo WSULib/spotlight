@@ -65,9 +65,13 @@ module Spotlight
       add_breadcrumb t(:'spotlight.curation.sidebar.header'), exhibit_dashboard_path(@exhibit)
       add_breadcrumb t(:'spotlight.curation.sidebar.items'), admin_exhibit_catalog_path(@exhibit)
 <<<<<<< HEAD
+<<<<<<< HEAD
       (@response,) = search_service.search_results
 =======
       (@response,) = search_service.search_results(params)
+>>>>>>> [WIP] Checkpoint
+=======
+      (@response,) = search_service.search_results
 >>>>>>> [WIP] Checkpoint
       @filters = params[:f] || []
 
@@ -128,7 +132,7 @@ module Spotlight
       search_params = params.merge(search_field: Spotlight::Engine.config.autocomplete_search_field,
                                    public: true,
                                    rows: 100)
-      state = Blacklight::SearchState.new(search_params, blacklight_config, controller)
+      state = Blacklight::SearchState.new(search_params, blacklight_config, self)
       search_service_class.new(blacklight_config, state.to_h)
     end
 
