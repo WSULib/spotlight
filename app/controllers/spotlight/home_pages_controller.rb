@@ -19,7 +19,10 @@ module Spotlight
       redirect_to exhibit_feature_pages_path(@exhibit)
     end
 
+    # rubocop:disable Metrics/MethodLength
     def show
+      state = Blacklight::SearchState.new({}, blacklight_config, controller)
+      home_search_service = search_service_class.new(blacklight_config, state.to_h)
       @response, deprecated_document_list = home_search_service.search_results if @page.display_sidebar?
       @document_list = ActiveSupport::Deprecation::DeprecatedObjectProxy
                        .new(deprecated_document_list,
@@ -30,6 +33,7 @@ module Spotlight
         render 'show'
       end
     end
+    # rubocop:enable Metrics/MethodLength
 
     # We're oddly getting an unknown action
     # error w/o explicitly defining this here
