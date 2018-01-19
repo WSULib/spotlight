@@ -107,6 +107,7 @@ module Spotlight
       params.require(:search).permit(
         :title,
         :long_description,
+        :search_box,
         :default_index_view_type,
         masthead_attributes: featured_image_params,
         thumbnail_attributes: featured_image_params
