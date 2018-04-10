@@ -136,8 +136,8 @@ module Spotlight
       search_service_class.new(blacklight_config, state.to_h)
     end
 
-    # rubocop:disable Style/PredicateName
     # TODO: move this out of app/helpers/blacklight/catalog_helper_behavior.rb and into blacklight/catalog.rb
+    # rubocop:disable Naming/PredicateName
     def has_search_parameters?
       !params[:q].blank? || !params[:f].blank? || !params[:search_field].blank?
     end
