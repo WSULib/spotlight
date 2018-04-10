@@ -133,7 +133,7 @@ module Spotlight
     def has_search_parameters?
       !params[:q].blank? || !params[:f].blank? || !params[:search_field].blank?
     end
-    # rubocop:enable Style/PredicateName
+    # rubocop:enable Naming/PredicateName
 
     def attach_breadcrumbs
       # The "q: ''" is necessary so that the breadcrumb builder recognizes that a path like this:
