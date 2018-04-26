@@ -29,7 +29,11 @@
               <% current_exhibit.languages.each do |language| %>
                 <%= f.fields_for :languages, language do |languages| %>
                   <tr>
+<<<<<<< HEAD
                     <td><%= t("locales.#{language.locale}") %></td>
+=======
+                    <td><%= t("locales.#{language.locale.downcase}") %></td>
+>>>>>>> I18n 🌝 - feature branch for new translation functionality (#1929)
                     <td class='text-center'>
                       <div class='checkbox'>
                         <%= languages.label :public, class: 'sr-only' %>
