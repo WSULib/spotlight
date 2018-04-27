@@ -4,3 +4,5 @@ gem 'blacklight-gallery', github: 'projectblacklight/blacklight-gallery', branch
 if ENV['RAILS_VERSION'] =~ /^5\.2/
   gem 'acts-as-taggable-on', github: 'Fodoj/acts-as-taggable-on', branch: 'rails-5.2'
 end
+
+gem 'thor', '~> 0.20'
