@@ -25,6 +25,7 @@
 # Spotlight::Engine.config.filter_resources_by_exhibit = true
 # Spotlight::Engine.config.autocomplete_search_field = 'autocomplete'
 # Spotlight::Engine.config.default_autocomplete_params = { qf: 'id^1000 full_title_tesim^100 id_ng full_title_ng' }
+# Spotlight::Engine.config.default_filter_field = nil
 
 # Solr field configurations
 # Spotlight::Engine.config.solr_fields.prefix = ''.freeze
@@ -54,6 +55,7 @@
 # Spotlight::Engine.config.upload_title_field = nil # UploadFieldConfig.new(...)
 # Spotlight::Engine.config.uploader_storage = :file
 # Spotlight::Engine.config.allowed_upload_extensions = %w(jpg jpeg png)
+# Spotlight::Engine.config.allowed_image_extensions = %w(jpg jpeg png)
 
 # Spotlight::Engine.config.featured_image_thumb_size = [400, 300]
 # Spotlight::Engine.config.featured_image_square_size = [400, 400]
