@@ -42,7 +42,7 @@ module Spotlight
     end
 
     def default_filter_field
-      "#{Spotlight::Engine.config.solr_fields.prefix}spotlight_exhibit_slug_#{slug}#{Spotlight::Engine.config.solr_fields.boolean_suffix}"
+      Spotlight::Engine.config.default_filter_field || "#{Spotlight::Engine.config.solr_fields.prefix}spotlight_exhibit_slug_#{slug}#{Spotlight::Engine.config.solr_fields.boolean_suffix}"
     end
 
     # Return a string to work around any ActiveRecord type-casting
