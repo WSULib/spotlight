@@ -20,6 +20,7 @@ module Spotlight
     end
 
     def add_image_dimensions(solr_hash)
+      return unless is_image?
       dimensions = Riiif::Image.new(resource.upload_id).info
       solr_hash[:spotlight_full_image_width_ssm] = dimensions.width
       solr_hash[:spotlight_full_image_height_ssm] = dimensions.height
@@ -43,6 +44,10 @@ module Spotlight
 
     def riiif
       Riiif::Engine.routes.url_helpers
+    end
+
+    def is_image?
+      Spotlight::Engine.config.allowed_image_extensions.include?(resource.upload.image.file.extension.downcase)
     end
   end
 end
