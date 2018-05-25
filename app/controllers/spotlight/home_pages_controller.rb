@@ -24,6 +24,8 @@ module Spotlight
 
       if @page.nil? || !@page.published?
         render '/catalog/index'
+      elsif @exhibit.hidden
+        redirect_to exhibit_browse_index_path(@exhibit)
       else
         render 'show'
       end
