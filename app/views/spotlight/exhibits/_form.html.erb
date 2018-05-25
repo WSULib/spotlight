@@ -15,7 +15,11 @@
     <%= f.check_box :published, label: "" %>
     <p class="help-block"><%= t(:'.fields.published.help_block') %></p>
   <% end %>
-  
+  <%= f.form_group :hidden, label: { text: nil, class: nil }, help: nil do %>
+    <%= f.check_box :hidden, label: "" %>
+    <p class="help-block"><%= t(:'.fields.published.help_block') %></p>
+  <% end %>
+
   <div class="form-actions">
     
     <div class="primary-actions">
