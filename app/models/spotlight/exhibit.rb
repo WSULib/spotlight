@@ -15,7 +15,7 @@ module Spotlight
     scope :published, -> { where(published: true) }
     scope :unpublished, -> { where(published: false) }
     scope :ordered_by_weight, -> { order('weight ASC') }
-    scope :not_default, -> { where.not(slug: 'default') }
+    scope :not_hidden, -> { where.not(hidden: true) }
 
     paginates_per 48
 
