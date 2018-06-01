@@ -9,7 +9,7 @@ module Spotlight
     load_and_authorize_resource
 
     def index
-      @published_exhibits = @exhibits.includes(:thumbnail).not_hidden.published.ordered_by_weight.page(params[:page])
+      @published_exhibits = @exhibits.includes(:thumbnail).not_default.not_hidden.published.ordered_by_weight.page(params[:page])
       @published_exhibits = @published_exhibits.tagged_with(params[:tag]) if params[:tag]
 
       if @exhibits.one?
