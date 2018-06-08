@@ -52,7 +52,7 @@ module Spotlight
     # setup within their index analyzer. This will ensure that this method returns
     # results when a partial match is passed in the "q" parameter.
     def autocomplete
-      (@response,) = autocomplete_service.search_results
+      @response, _ = autocomplete_service.search_results
 
       respond_to do |format|
         format.json do
@@ -64,15 +64,7 @@ module Spotlight
     def admin
       add_breadcrumb t(:'spotlight.curation.sidebar.header'), exhibit_dashboard_path(@exhibit)
       add_breadcrumb t(:'spotlight.curation.sidebar.items'), admin_exhibit_catalog_path(@exhibit)
-<<<<<<< HEAD
-<<<<<<< HEAD
-      (@response,) = search_service.search_results
-=======
-      (@response,) = search_service.search_results(params)
->>>>>>> [WIP] Checkpoint
-=======
-      (@response,) = search_service.search_results
->>>>>>> [WIP] Checkpoint
+      (@response, _) = search_service.search_results
       @filters = params[:f] || []
 
       respond_to do |format|
@@ -135,8 +127,7 @@ module Spotlight
       state = Blacklight::SearchState.new(search_params, blacklight_config, self)
       search_service_class.new(blacklight_config, state.to_h)
     end
-
-    # TODO: move this out of app/helpers/blacklight/catalog_helper_behavior.rb and into blacklight/catalog.rb
+    
     # rubocop:disable Naming/PredicateName
     def has_search_parameters?
       !params[:q].blank? || !params[:f].blank? || !params[:search_field].blank?

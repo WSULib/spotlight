@@ -2,7 +2,6 @@
   .glyphicon-ok {
     color: $translation-available-color;
   }
-<<<<<<< HEAD
 
   .browse-category-title {
     margin-bottom: $padding-base-vertical;
@@ -15,8 +14,6 @@
   .browse-category-description {
     margin-bottom: $padding-large-vertical * 2;
   }
-=======
->>>>>>> I18n 🌝 - feature branch for new translation functionality (#1929)
 }
 
 .translation-subheading {
@@ -26,11 +23,11 @@
 
 .form-group.translation-form {
   .control-label {
-    padding-top: $panel-body-padding + $padding-base-vertical;
+    //padding-top: $panel-body-padding + $padding-base-vertical;
   }
 
   .glyphicon-ok {
-    padding-top: $panel-body-padding + $padding-base-vertical;
+    //padding-top: $panel-body-padding + $padding-base-vertical;
   }
 }
 

@@ -2,7 +2,6 @@ module Spotlight
   ##
   # CRUD actions for the exhibit home page
   class HomePagesController < Spotlight::PagesController
-    #    include Blacklight::SearchHelper
     include Spotlight::Catalog
 
     load_and_authorize_resource through: :exhibit, singleton: true, instance_name: 'page'
@@ -21,9 +20,8 @@ module Spotlight
 
     def show
       @response, deprecated_document_list = home_search_service.search_results if @page.display_sidebar?
-      @document_list = ActiveSupport::Deprecation::DeprecatedObjectProxy
-                       .new(deprecated_document_list,
-                            'The @document_list instance variable is deprecated; use @response.documents instead.')
+      @document_list = ActiveSupport::Deprecation::DeprecatedObjectProxy.new(deprecated_document_list,
+                              'The @document_list instance variable is deprecated; use @response.documents instead.')
       if @page.nil? || !@page.published?
         render '/catalog/index'
       elsif @exhibit.hidden

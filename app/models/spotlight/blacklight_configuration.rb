@@ -66,7 +66,7 @@ module Spotlight
     def blacklight_config
       @blacklight_config ||= begin
         # Create a new config based on the defaults
-        config = default_blacklight_config.inheritable_copy
+        config = default_blacklight_config.class.new
 
         config.show.merge! show unless show.blank?
         config.index.merge! index unless index.blank?
