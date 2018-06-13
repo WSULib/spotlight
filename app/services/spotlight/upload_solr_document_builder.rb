@@ -6,10 +6,11 @@ module Spotlight
     def to_solr
       super.tap do |solr_hash|
         add_default_solr_fields solr_hash
-        add_image_dimensions solr_hash
-        add_file_versions solr_hash
+        add_image_dimensions solr_hash if is_image?
+        add_file_versions solr_hash if is_image?
         add_sidecar_fields solr_hash
-        add_manifest_path solr_hash
+        add_manifest_path solr_hash if is_image?
+        add_format solr_hash
       end
     end
 
@@ -36,6 +37,10 @@ module Spotlight
 
     def add_manifest_path(solr_hash)
       solr_hash[Spotlight::Engine.config.iiif_manifest_field] = spotlight_routes.manifest_exhibit_solr_document_path(exhibit, resource.compound_id)
+    end
+
+    def add_format(solr_hash)
+      solr_hash[Spotlight::Engine.config.display_type_field] = is_image? ? 'image' : 'file'
     end
 
     def spotlight_routes

@@ -65,8 +65,13 @@ module Spotlight
     def spotlight_resource_metadata_for_solr
       {
         Spotlight::Engine.config.resource_global_id_field => (resource.to_global_id.to_s if resource.persisted?),
-        document_model.resource_type_field => resource.class.to_s.tableize
+        document_model.resource_type_field => resource.class.to_s.tableize,
+        Spotlight::Engine.config.display_type_field => is_image? ? nil : 'file'
       }
+    end
+
+    def is_image?
+      Spotlight::Engine.config.allowed_image_extensions.include?(resource.upload.image.file.extension.downcase)
     end
   end
 end
