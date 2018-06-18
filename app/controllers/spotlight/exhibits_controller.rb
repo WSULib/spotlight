@@ -47,7 +47,7 @@ module Spotlight
       respond_to do |format|
         format.json do
           authorize! :export, @exhibit
-          send_data exhibit_export(@exhibit),
+          send_data @exhibit.export,
                     type: 'application/json',
                     disposition: 'attachment',
                     filename: "#{@exhibit.friendly_id}-export.json"

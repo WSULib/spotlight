@@ -6,6 +6,7 @@ module Spotlight
     include Spotlight::ExhibitAnalytics
     include Spotlight::ExhibitDefaults
     include Spotlight::ExhibitDocuments
+    include Spotlight::ExhibitBackups
     include Spotlight::Translatables
 
     translates :title, :subtitle, :description
@@ -64,8 +65,6 @@ module Spotlight
     accepts_nested_attributes_for :contact_emails, reject_if: proc { |attr| attr['email'].blank? }
     accepts_nested_attributes_for :roles, allow_destroy: true, reject_if: proc { |attr| attr['user_key'].blank? && attr['id'].blank? }
 
-    mount_uploaders :backups, BackupUploader
-
     before_save :sanitize_description, if: :description_changed?
 
     def main_about_page
@@ -83,10 +82,6 @@ module Spotlight
     def import(hash)
       Spotlight::ExhibitExportSerializer.prepare(self).from_hash(hash)
       self
-    end
-
-    def export
-      JSON.pretty_generate(ExhibitExportSerializer.new(self).as_json)
     end
 
     def solr_data
