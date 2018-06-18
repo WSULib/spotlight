@@ -71,7 +71,7 @@ module Spotlight
     end
 
     def is_image?
-      Spotlight::Engine.config.allowed_image_extensions.include?(resource.upload.image.file.extension.downcase)
+      resource.instance_of?(Spotlight::Resources::Upload) && Spotlight::Engine.config.allowed_image_extensions.include?(resource.upload.image.file.extension.downcase)
     end
   end
 end
