@@ -774,4 +774,8 @@ en:
       redo: Redo changes
       undo: Undo changes
       undo_error: Unable to undo changes
+    backups:
+      show:
+        section: Manage backups
+        page_title: Backups
   toggle_nav: Toggle navigation

@@ -10,6 +10,8 @@ Spotlight::Engine.routes.draw do
     collection do
       get '/tags', to: 'sites#tags'
     end
+
+    resource :backup, only: [:show, :create]
   end
 
   get '/exhibits/edit', to: 'sites#edit_exhibits', as: 'edit_site_exhibits'

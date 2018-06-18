@@ -5,6 +5,7 @@
 
   <% if can? :manage, Spotlight::Site.instance %>
     <li><%= link_to t(:'spotlight.sites.edit.page_title'), spotlight.edit_site_path %></li>
+    <li><%= link_to t(:'spotlight.backups.show.page_title'), spotlight.site_backup_path %></li>
   <% end %>
 
   <% if can? :manange, Spotlight::Exhibit %>
