@@ -13,10 +13,10 @@ Spotlight::Engine.routes.draw do
 
     resource :backup, only: [:show, :create] do
       collection do
-        post 'restore_last' => 'backups#restore_last', as: :restore_last
+        get 'restore_last' => 'backups#restore_last', as: :restore_last
       end
       member do
-        post 'restore/:id' => 'backups#restore', as: :restore
+        get 'restore/:id' => 'backups#restore', as: :restore
       end
     end
   end

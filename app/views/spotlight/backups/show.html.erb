@@ -1,7 +1,7 @@
 <div id="content" class="col-md-9 exhibit-admin">
   <%= page_title(t('.section'), t('.page_title')) %>
   <%= link_to t('.create'), site_backup_path, method: :post, class: 'btn btn-primary' %>
-  <%= link_to t('.restore'), restore_last_site_backup_path, method: :post, class: 'btn btn-primary' %>
+  <%= link_to t('.restore'), restore_last_site_backup_path, class: 'btn btn-primary' %>
 
   <h2><%= t('.backup_sets') %></h2>
 
