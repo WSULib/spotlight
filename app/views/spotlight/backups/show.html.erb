@@ -1,6 +1,15 @@
 <div id="content" class="col-md-9 exhibit-admin">
   <%= page_title(t('.section'), t('.page_title')) %>
-  <%= link_to "Create Backup", site_backup_path, method: :post %>
+  <%= link_to t('.create'), site_backup_path, method: :post, class: 'btn btn-primary' %>
+  <%= link_to t('.restore'), restore_last_site_backup_path, method: :post, class: 'btn btn-primary' %>
+
+  <h2><%= t('.backup_sets') %></h2>
+
+  <% if @backups.any? %>
+    <ul>
+      <%= render partial: 'backup', collection: @backups, as: :backup %>
+    </ul>
+  <% end %>
 </div>
 
 <aside class="col-md-3">

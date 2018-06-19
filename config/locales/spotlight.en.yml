@@ -778,4 +778,7 @@ en:
       show:
         section: Manage backups
         page_title: Backups
+        create: Create Full Backup
+        restore: Restore Full Backup
+        backup_sets: Backup Sets
   toggle_nav: Toggle navigation

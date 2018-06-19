@@ -11,7 +11,14 @@ Spotlight::Engine.routes.draw do
       get '/tags', to: 'sites#tags'
     end
 
-    resource :backup, only: [:show, :create]
+    resource :backup, only: [:show, :create] do
+      collection do
+        post 'restore_last' => 'backups#restore_last', as: :restore_last
+      end
+      member do
+        post 'restore/:id' => 'backups#restore', as: :restore
+      end
+    end
   end
 
   get '/exhibits/edit', to: 'sites#edit_exhibits', as: 'edit_site_exhibits'

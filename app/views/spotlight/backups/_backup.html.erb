@@ -1,0 +1,3 @@
+<li>
+  <%= backup.created_at %> <%= link_to t('.restore'), restore_site_backup_path(backup), method: :post, class: 'btn btn-primary' %>
+</li>

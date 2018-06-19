@@ -3,20 +3,31 @@ module Spotlight
     # before_action :authenticate_user!
     # load_and_authorize_resource
 
-    def show; end
+    def show
+      @backups = Backup.all.order(created_at: :desc)
+    end
 
     def create
-      errors = Exhibit.export_all
-      redirect_to spotlight.site_backup_path, alert: errors
+      backup = Exhibit.export_all
+      if backup.save
+        if backup.messages.empty?
+          redirect_to spotlight.site_backup_path, notice: 'Backup successfully created'
+        else
+          redirect_to spotlight.site_backup_path, alert: backup.messages
+        end
+      else
+        redirect_to spotlight.site_backup_path, alert: 'Backup failed to create'
+      end
     end
-  end
 
-  class FileIO < StringIO
-    def initialize(stream, filename)
-      super(stream)
-      @original_filename = filename
+    def restore
+      messages = Exhibit.restore_all(Backup.find(params[:id]))
+      redirect_to spotlight.site_backup_path, notice: messages
     end
 
-    attr_reader :original_filename
+    def restore_last
+      messages = Exhibit.restore_all(Backup.last)
+      redirect_to spotlight.site_backup_path, notice: messages
+    end
   end
 end

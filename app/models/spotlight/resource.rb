@@ -65,6 +65,15 @@ module Spotlight
         @document_builder ||= document_builder_class.new(self)
       end
 
+      def delete_from_index
+        documents = solr_document_sidecars
+        return unless documents.present?
+
+        documents.each do |document|
+          blacklight_solr.delete_by_id document.document_id, params: { commitWithin: 500 }
+        end
+      end
+
       private
 
       def blacklight_solr
