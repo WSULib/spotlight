@@ -781,4 +781,7 @@ en:
         create: Create Full Backup
         restore: Restore Full Backup
         backup_sets: Backup Sets
+      backup:
+        download: Download
+        restore: Restore
   toggle_nav: Toggle navigation

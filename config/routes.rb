@@ -17,6 +17,7 @@ Spotlight::Engine.routes.draw do
       end
       member do
         get 'restore/:id' => 'backups#restore', as: :restore
+        get 'download/:id' => 'backups#download', as: :download
       end
     end
   end

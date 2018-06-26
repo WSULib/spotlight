@@ -3,6 +3,12 @@ module Spotlight
     # before_action :authenticate_user!
     # load_and_authorize_resource
 
+    require 'zipline'
+    # enable streaming responses
+    include ActionController::Streaming
+    # enable zipline
+    include Zipline
+
     def show
       @backups = Backup.all.order(created_at: :desc)
     end
@@ -38,6 +44,13 @@ module Spotlight
         messages = ['No backups exist']
       end
       redirect_to spotlight.site_backup_path, notice: messages
+    end
+
+    def download
+      backup = Backup.find(params[:id])
+      timestamp = Backup.find(params[:id]).created_at.strftime('%Y-%m-%d_%H-%M-%S')
+      files = backup.files.map {|file| [file, file.file.filename]}
+      zipline(files, "exhibits-backup-#{timestamp}.zip")
     end
 
     private

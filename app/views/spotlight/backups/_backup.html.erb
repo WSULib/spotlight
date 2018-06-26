@@ -1,3 +1,5 @@
 <li>
-  <%= backup.created_at %> <%= link_to t('.restore'), restore_site_backup_path(backup), class: 'btn btn-primary' %>
+  <%= backup.created_at %>
+  <%= link_to t('.restore'), restore_site_backup_path(backup), class: 'btn btn-primary' %>
+  <%= link_to t('.download'), download_site_backup_path(backup), class: 'btn btn-primary' %>
 </li>
