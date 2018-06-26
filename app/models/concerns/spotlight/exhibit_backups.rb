@@ -38,11 +38,12 @@ module Spotlight
             update = false
           end
           exhibit.import(JSON.parse(file.read))
-          if exhibit.save && exhibit.reindex_later
+          if exhibit.save! && exhibit.reindex_later
             message = update ? "Updated exhibit #{slug}" : "Created exhibit #{slug}"
           else
             message = update ? "Failed to update exhibit #{slug}" : "Failed to create exhibit #{slug}"
           end
+          exhibit.cleanup_solr_document_sidecars
           puts message
           messages << message
         end
@@ -56,15 +57,19 @@ module Spotlight
 
     def purge_resources
       self.resources.each do |resource|
-        resource.upload.destroy if resource.instance_of? Spotlight::Resources::Upload
-        resource.solr_document_sidecars.each do |sidecar|
-          # Delete Solr document
-          resource.delete_from_index
-          # Delete sidecar
-          sidecar.destroy
-          # Delete resource
-          resource.destroy
-        end
+        resource.upload.destroy if resource.is_a?(Spotlight::Resources::Upload) && resource.upload.present?
+        resource.delete_sidecars_from_index
+        resource.solr_document_sidecars.each(&:destroy)
+        resource.destroy
+      end
+      self.masthead.destroy if self.masthead.present?
+      self.thumbnail.destroy if self.thumbnail.present?
+      self.cleanup_solr_document_sidecars
+    end
+
+    def cleanup_solr_document_sidecars
+      self.solr_document_sidecars.each do |s|
+        s.destroy if s.resource.nil?
       end
     end
 

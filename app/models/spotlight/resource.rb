@@ -65,7 +65,7 @@ module Spotlight
         @document_builder ||= document_builder_class.new(self)
       end
 
-      def delete_from_index
+      def delete_sidecars_from_index
         documents = solr_document_sidecars
         return unless documents.present?
 

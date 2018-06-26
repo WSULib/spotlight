@@ -26,8 +26,24 @@ module Spotlight
     end
 
     def restore_last
-      messages = Exhibit.restore_all(Backup.last)
+      if Backup.last.present?
+        app_core = ENV['SOLR_URL'].split('/').last
+        imported_core = restore_params[:core]
+        if app_core == imported_core
+          messages = Exhibit.restore_all(Backup.last)
+        else
+          messages = ["Imported core \"#{imported_core}\" does not match app core \"#{app_core}\""]
+        end
+      else
+        messages = ['No backups exist']
+      end
       redirect_to spotlight.site_backup_path, notice: messages
+    end
+
+    private
+
+    def restore_params
+      params.permit(:core)
     end
   end
 end
