@@ -74,6 +74,13 @@ module Spotlight
         end
       end
 
+      def purge
+        self.upload.destroy if self.is_a?(Spotlight::Resources::Upload) && self.upload.present?
+        self.delete_sidecars_from_index
+        self.solr_document_sidecars.each(&:destroy)
+        self.destroy
+      end
+
       private
 
       def blacklight_solr

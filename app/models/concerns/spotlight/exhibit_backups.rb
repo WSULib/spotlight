@@ -56,12 +56,7 @@ module Spotlight
     end
 
     def purge_resources
-      self.resources.each do |resource|
-        resource.upload.destroy if resource.is_a?(Spotlight::Resources::Upload) && resource.upload.present?
-        resource.delete_sidecars_from_index
-        resource.solr_document_sidecars.each(&:destroy)
-        resource.destroy
-      end
+      self.resources.each(&:purge)
       self.masthead.destroy if self.masthead.present?
       self.thumbnail.destroy if self.thumbnail.present?
       self.cleanup_solr_document_sidecars
