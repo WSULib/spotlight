@@ -23,8 +23,9 @@ Spotlight::Engine.routes.draw do
 
     resources :solr_admin, only: [:index] do
       collection do
-        post 'update' => 'solr_admin#update', as: :update
-        post 'reindex' => 'solr_admin#reindex', as: :reindex
+        get 'update' => 'solr_admin#update', as: :update
+        get 'reindex' => 'solr_admin#reindex', as: :reindex
+        get 'status' => 'solr_admin#status', as: :status
       end
     end
   end
