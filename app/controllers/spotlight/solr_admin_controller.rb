@@ -30,7 +30,7 @@ module Spotlight
       else
         puts "Reindexing Solr index"
         Faraday.get "#{ENV['SOLR_URL']}/dataimport?command=full-import&clean=true"
-        redirect_to site_solr_admin_index_path, notice: 'Reindexin Solr index'
+        redirect_to site_solr_admin_index_path, notice: 'Reindexing Solr index'
       end
     end
 
