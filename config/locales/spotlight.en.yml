@@ -784,4 +784,8 @@ en:
       backup:
         download: Download
         restore: Restore
+    solr_admin:
+      index:
+        section: Solr Admin
+        page_title: Import Management
   toggle_nav: Toggle navigation

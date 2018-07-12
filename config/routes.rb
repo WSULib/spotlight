@@ -20,6 +20,13 @@ Spotlight::Engine.routes.draw do
         get 'download/:id' => 'backups#download', as: :download
       end
     end
+
+    resources :solr_admin, only: [:index] do
+      collection do
+        post 'update' => 'solr_admin#update', as: :update
+        post 'reindex' => 'solr_admin#reindex', as: :reindex
+      end
+    end
   end
 
   get '/exhibits/edit', to: 'sites#edit_exhibits', as: 'edit_site_exhibits'

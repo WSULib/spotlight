@@ -1,0 +1,19 @@
+<div class="col-md-9">
+  <%= page_title(t('.section'), t('.page_title')) %>
+
+  <p>
+    Data import status: <%= @status %>
+  </p>
+  <div class="progress">
+    <div class="progress-bar" role="progressbar" aria-valuenow="<%= @completed %>" aria-valuemin="0" aria-valuemax="<%= @total %>" style="width: <%= @progress %>%;">
+      <%= @progress %>%
+    </div>
+  </div>
+
+  <%= link_to "Update", update_site_solr_admin_index_path, method: :post, class: 'btn btn-primary' %>
+  <%= link_to "Reindex", reindex_site_solr_admin_index_path, method: :post, class: 'btn btn-danger', data: {confirm: 'Are you sure you want to reindex? This will backup, purge, and reimport manually uploaded resources.', disable: (@status != 'idle')} %>
+</div>
+
+<aside class="col-md-3">
+  <%= render "shared/site_sidebar" %>
+</aside>
