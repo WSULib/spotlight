@@ -3,6 +3,7 @@ module Spotlight
   # Exhibit home page
   class HomePage < Spotlight::Page
     extend FriendlyId
+    include ExhibitHelpers
     friendly_id :title, use: [:slugged, :scoped, :finders], scope: [:exhibit, :locale]
 
     before_save :publish
@@ -19,7 +20,7 @@ module Spotlight
     end
 
     def display_sidebar?
-      display_sidebar
+      !default_exhibit? && display_sidebar
     end
 
     private
