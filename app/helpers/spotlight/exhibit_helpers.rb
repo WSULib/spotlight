@@ -5,7 +5,8 @@ module Spotlight
     end
 
     def default_exhibit?
-      default_exhibit == @exhibit || default_exhibit == exhibit
+
+      default_exhibit == @exhibit || default_exhibit == (defined?(exhibit) ? exhibit : nil)
     end
   end
 end
