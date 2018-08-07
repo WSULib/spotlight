@@ -3,6 +3,7 @@ module Spotlight
   # CRUD actions for the exhibit home page
   class HomePagesController < Spotlight::PagesController
     include Blacklight::SearchHelper
+    include Spotlight::ExhibitHelpers
     include Spotlight::Catalog
 
     load_and_authorize_resource through: :exhibit, singleton: true, instance_name: 'page'
@@ -26,6 +27,8 @@ module Spotlight
         render '/catalog/index'
       elsif @exhibit.hidden
         redirect_to exhibit_browse_index_path(@exhibit)
+      elsif default_exhibit?
+        render 'home'
       else
         render 'show'
       end
