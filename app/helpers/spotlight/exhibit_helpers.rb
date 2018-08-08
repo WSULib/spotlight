@@ -8,10 +8,6 @@ module Spotlight
       default_exhibit == @exhibit || default_exhibit == (defined?(exhibit) ? exhibit : nil)
     end
 
-    def hidden_exhibits
-      Spotlight::Exhibit.where(hidden: true).ordered_by_weight
-    end
-
     ##
     # Render classes for the <body> element
     # @return [String]

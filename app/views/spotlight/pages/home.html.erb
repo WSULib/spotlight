@@ -12,14 +12,14 @@
       </h1>
     <% end %>
   </div>
-  <% if hidden_exhibits.any? %>
+  <% if Spotlight::Exhibit.hidden.any? %>
     <div class="clearfix">
       <h2>
         <p>
           Browse
         </p>
       </h2>
-      <% hidden_exhibits.each do |exhibit| %>
+      <% Spotlight::Exhibit.hidden.ordered_by_weight.each do |exhibit| %>
         <div class="col-sm-3">
           <div class="exhibit-thumbnail">
             <div class="content">

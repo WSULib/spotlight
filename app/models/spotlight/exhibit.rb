@@ -18,6 +18,7 @@ module Spotlight
     scope :ordered_by_weight, -> { order('weight ASC') }
     scope :not_hidden, -> { where.not(hidden: true) }
     scope :not_default, -> { where.not(slug: 'default') }
+    scope :hidden, -> { where(hidden: true) }
 
     paginates_per 48
 
