@@ -24,7 +24,7 @@ module Spotlight
     # @see render_body_class
     # @return [Array<String>]
     def extra_exhibit_classes
-      @extra_exhibit_classes ||= ['blacklight-page-' + [@exhibit.slug, @page.slug].join('-')]
+      @extra_exhibit_classes ||= @exhibit.present? && @page.present? ? ['blacklight-page-' + [@exhibit.slug, @page.slug].join('-')] : []
     end
   end
 end
