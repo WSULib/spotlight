@@ -24,7 +24,12 @@ module Spotlight
     # @see render_body_class
     # @return [Array<String>]
     def extra_exhibit_classes
-      @extra_exhibit_classes ||= @exhibit.present? && @page.present? ? ['blacklight-page-' + [@exhibit.slug, @page.slug].join('-')] : []
+      if @exhibit.present? && @page.present?
+        @extra_exhibit_classes ||= @exhibit.present? && @page.present? ? ['blacklight-page-' + [@exhibit.slug, @page.slug].join('-')] : []
+        @extra_exhibit_classes << ['site-home'] if home_page?
+      else
+        @extra_exhibit_classes ||= []
+      end
     end
 
     def background_image_url(exhibit)
