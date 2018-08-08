@@ -8,6 +8,10 @@ module Spotlight
       default_exhibit == @exhibit || default_exhibit == (defined?(exhibit) ? exhibit : nil)
     end
 
+    def home_page?
+      default_exhibit? && @page.instance_of?(Spotlight::HomePage)
+    end
+
     ##
     # Render classes for the <body> element
     # @return [String]
