@@ -26,5 +26,13 @@ module Spotlight
     def extra_exhibit_classes
       @extra_exhibit_classes ||= @exhibit.present? && @page.present? ? ['blacklight-page-' + [@exhibit.slug, @page.slug].join('-')] : []
     end
+
+    def background_image_url(exhibit)
+      return unless exhibit.thumbnail.present?
+      url = exhibit.thumbnail.iiif_tilesource
+      id = url.split('/')[-2].to_i
+      image = Spotlight::FeaturedImage.find(id)
+      image ? image.image.url : ''
+    end
   end
 end

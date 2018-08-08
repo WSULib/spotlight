@@ -22,7 +22,7 @@
       <% Spotlight::Exhibit.hidden.ordered_by_weight.each do |exhibit| %>
         <div class="col-sm-3">
           <div class="exhibit-thumbnail">
-            <div class="content">
+            <div class="content<% if background_image_url(exhibit) %> content--background<% end %>" <% if background_image_url(exhibit) %>style="background: url('<%= background_image_url(exhibit) %>') center center / cover"<% end %>>
               <%= link_to exhibit.title, exhibit %>
             </div>
           </div>
