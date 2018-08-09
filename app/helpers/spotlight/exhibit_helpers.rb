@@ -30,6 +30,7 @@ module Spotlight
       else
         @extra_exhibit_classes ||= []
       end
+      @extra_exhibit_classes
     end
 
     def background_image_url(exhibit)
