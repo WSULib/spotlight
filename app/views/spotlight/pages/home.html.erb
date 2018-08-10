@@ -14,20 +14,22 @@
   </div>
   <% if Spotlight::Exhibit.hidden.any? %>
     <div class="clearfix">
-      <h2>
+      <h2 class="main-header">
         <p>
-          Browse
+          <%= t('blacklight.home.browse') %>
         </p>
       </h2>
-      <% Spotlight::Exhibit.hidden.ordered_by_weight.each do |exhibit| %>
-        <div class="col-xs-12 col-sm-3">
-          <div class="exhibit-thumbnail">
-            <div class="content<% if background_image_url(exhibit) %> content--background<% end %>" <% if background_image_url(exhibit) %>style="background: url('<%= background_image_url(exhibit) %>') center center / cover"<% end %>>
-              <%= link_to exhibit.title, exhibit %>
+      <div class="content-block">
+        <% Spotlight::Exhibit.hidden.ordered_by_weight.each do |exhibit| %>
+          <div class="col-xs-12 col-sm-3">
+            <div class="exhibit-thumbnail">
+              <div class="content<% if background_image_url(exhibit) %> content--background<% end %>" <% if background_image_url(exhibit) %>style="background: url('<%= background_image_url(exhibit) %>') center center / cover"<% end %>>
+                <%= link_to exhibit.title, exhibit %>
+              </div>
             </div>
           </div>
-        </div>
-      <% end %>
+        <% end %>
+      </div>
     </div>
   <% end %>
   <div>
