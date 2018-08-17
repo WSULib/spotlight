@@ -18,6 +18,12 @@ module Spotlight
       [iiif_service_base, iiif_region || 'full', image_size.join(','), '0', 'default.jpg'].join('/')
     end
 
+    def image_url
+      id = iiif_tilesource.split('/')[-2].to_i
+      image = Spotlight::FeaturedImage.find(id)
+      image ? image.image.url : ''
+    end
+
     # This is used to fetch images given the URL field in the CSV uploads
     # If the image is local, this step will fail, which is okay since the only
     # consumer is CSV uploads and the URL is intended to be remote

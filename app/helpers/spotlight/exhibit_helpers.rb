@@ -35,10 +35,7 @@ module Spotlight
 
     def background_image_url(exhibit)
       return unless exhibit.thumbnail.present?
-      url = exhibit.thumbnail.iiif_tilesource
-      id = url.split('/')[-2].to_i
-      image = Spotlight::FeaturedImage.find(id)
-      image ? image.image.url : ''
+      exhibit.thumbnail.image_url
     end
   end
 end
