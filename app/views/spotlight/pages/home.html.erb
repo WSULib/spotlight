@@ -24,7 +24,7 @@
           <div class="col-xs-12 col-sm-3">
             <div class="exhibit-thumbnail">
               <div class="content<% if background_image_url(exhibit) %> content--background<% end %>" <% if background_image_url(exhibit) %>style="background: url('<%= background_image_url(exhibit) %>') center center / cover"<% end %>>
-                <%= link_to exhibit.title, exhibit %>
+                <%= link_to exhibit.title, exhibit.home_url ? exhibit.home_url : exhibit %>
               </div>
             </div>
           </div>
