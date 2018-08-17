@@ -368,6 +368,10 @@ en:
             help_block: Each contact email will receive feedback submissions
           published:
             help_block: ''
+          hidden:
+            help_block: Hide from published exhibit list and redirect home page to browse page
+          home_url:
+            help_block: Redirect to this url instead of the browse page when hidden
         uneditable_non_default_language: This field is not editable in the current language. Switch to the default language to edit it.
       import:
         button: Import data

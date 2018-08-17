@@ -50,4 +50,9 @@ Spotlight.onLoad(function() {
   $('#save-modal').on('shown.bs.modal', function () {
       $('#search_title').focus();
   });
+
+  $('#exhibit_home_url').prop('disabled', !$('#exhibit_hidden').is(':checked'));
+  $('#exhibit_hidden').on('change', function () {
+    $('#exhibit_home_url').prop('disabled', !$('#exhibit_hidden').is(':checked'));
+  });
 });

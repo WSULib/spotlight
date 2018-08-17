@@ -92,6 +92,7 @@ module Spotlight
         :description,
         :published,
         :hidden,
+        :home_url,
         :tag_list,
         contact_emails_attributes: [:id, :email],
         languages_attributes: [:id, :public]

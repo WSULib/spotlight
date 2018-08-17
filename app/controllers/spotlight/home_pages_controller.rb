@@ -26,7 +26,11 @@ module Spotlight
       if @page.nil? || !@page.published?
         render '/catalog/index'
       elsif @exhibit.hidden
-        redirect_to exhibit_browse_index_path(@exhibit)
+        if @exhibit.home_url.present?
+          redirect_to @exhibit.home_url
+        else
+          redirect_to exhibit_browse_index_path(@exhibit)
+        end
       elsif default_exhibit?
         render 'home'
       else

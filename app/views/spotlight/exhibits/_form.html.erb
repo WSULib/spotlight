@@ -16,9 +16,10 @@
     <p class="help-block"><%= t(:'.fields.published.help_block') %></p>
   <% end %>
   <%= f.form_group :hidden, label: { text: nil, class: nil }, help: nil do %>
-    <%= f.check_box :hidden, label: "Hide from published exhibit list and redirect home page to browse page" %>
-    <p class="help-block"><%= t(:'.fields.published.help_block') %></p>
+    <%= f.check_box :hidden, label: "" %>
+    <p class="help-block"><%= t(:'.fields.hidden.help_block') %></p>
   <% end %>
+  <%= f.text_field :home_url, label: "", help: t(:'.fields.home_url.help_block') %>
 
   <div class="form-actions">
     
