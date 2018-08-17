@@ -484,6 +484,7 @@ en:
           remote:
             header: Cropped image
             label: Upload an image
+          caption: Caption
       upload_form:
         crop_area:
           help: Adjust the image so that the rectangle contains the area you want to use as the %{thing}. Click "Save changes" to save the cropped area.

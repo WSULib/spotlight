@@ -22,6 +22,10 @@
           <p class="instructions"><%= t(:'.site_masthead.help') %></p>
           <%= f.fields_for(:masthead, @site.masthead || @site.build_masthead) do |m| %>
             <%= render '/spotlight/featured_images/upload_form', f: m, initial_crop_selection: Spotlight::Engine.config.masthead_initial_crop_selection, crop_type: :masthead %>
+            <%= field_set_tag(t(:'.source.caption')) do %>
+              <%= f.text_field(:masthead_caption) %>
+              <%= f.text_field(:masthead_caption_url) %>
+            <% end %>
           <% end %>
         </div>
       </div>

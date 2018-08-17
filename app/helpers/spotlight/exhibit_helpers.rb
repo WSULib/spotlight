@@ -35,7 +35,7 @@ module Spotlight
 
     def background_image_url(exhibit)
       return unless exhibit.thumbnail.present?
-      exhibit.thumbnail.image_url
+      exhibit.thumbnail.source_image.image.url
     end
   end
 end
