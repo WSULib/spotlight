@@ -32,7 +32,11 @@ module Spotlight
           redirect_to exhibit_browse_index_path(@exhibit)
         end
       elsif default_exhibit?
-        render 'home'
+        if request.fullpath != '/'
+          redirect_to main_app.root_url
+        else
+          render 'home'
+        end
       else
         render 'show'
       end
