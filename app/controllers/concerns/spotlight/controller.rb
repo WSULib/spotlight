@@ -5,6 +5,7 @@ module Spotlight
     extend ActiveSupport::Concern
     include Blacklight::Controller
     include Spotlight::Config
+    include Spotlight::ExhibitHelpers
 
     included do
       helper_method :current_site, :current_exhibit, :current_masthead, :exhibit_masthead?, :resource_masthead?
@@ -84,10 +85,13 @@ module Spotlight
     def exhibit_search_action_url(*args)
       options = args.extract_options!
       only_path = options[:only_path]
-      options.except! :exhibit_id, :only_path
+      global = options[:global]
+      options.except! :exhibit_id, :only_path, :global
 
       if only_path
         spotlight.search_exhibit_catalog_path(current_exhibit, *args, options)
+      elsif global
+        spotlight.search_exhibit_catalog_path(default_exhibit, *args, options)
       else
         spotlight.search_exhibit_catalog_url(current_exhibit, *args, options)
       end
