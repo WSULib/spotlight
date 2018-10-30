@@ -1,6 +1,17 @@
 Spotlight::Engine.routes.draw do
   devise_for :contact_email, class_name: 'Spotlight::ContactEmail', only: [:confirmations]
 
+  devise_scope :users do #notice "users" here, not "user"
+    get "/sign_in" => "devise/sessions#new" # custom path to login/sign_in
+    get "/sign_up" => "devise/registrations#new", as: "new_user_registration" # custom path to sign_up/registration
+  end
+
+  devise_for :users, :skip => [:registrations]
+  as :user do
+    get 'users/edit' => 'devise/registrations#edit', :as => 'edit_user_registration'
+    put 'users' => 'devise/registrations#update', :as => 'user_registration'
+  end
+  
   resources :contact_images, controller: :featured_images, only: :create
   resources :exhibit_thumbnails, controller: :featured_images, only: :create
   resources :mastheads, controller: :featured_images, only: :create
