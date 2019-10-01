@@ -24,7 +24,7 @@ these collections.)
   s.add_dependency 'autoprefixer-rails'
   s.add_dependency 'cancancan'
   s.add_dependency 'sir_trevor_rails', '~> 0.5'
-  s.add_dependency 'carrierwave'
+  s.add_dependency 'carrierwave', '~> 1.0'
   s.add_dependency 'mini_magick'
   s.add_dependency 'bootstrap_form', '~> 2.2'
   s.add_dependency 'acts-as-taggable-on', '~> 5.0'
