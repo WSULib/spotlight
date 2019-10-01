@@ -8,7 +8,7 @@ module Spotlight
       resource.roles.includes(:user).each do |role|
         user = role.user
 
-        user.deliver_invitation if user.created_by_invite? && user.invitation_sent_at.blank?
+        user.deliver_invitation if user.created_by_invite?
       end
     end
   end
